@@ -88,6 +88,5 @@
         }
       }
     }
-  },
-  "defaultProject": "angular-performance"
+  }
 }

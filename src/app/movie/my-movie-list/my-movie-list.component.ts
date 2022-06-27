@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormArray, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { filter } from 'rxjs';
 import { MovieModel } from '../movie-model';
 import { MovieService } from '../movie.service';
@@ -10,8 +10,8 @@ import { MovieService } from '../movie.service';
   styleUrls: ['./my-movie-list.component.scss'],
 })
 export class MyMovieListComponent implements OnInit {
-  myMovieForm = new FormGroup({
-    movie: new FormControl(null, [
+  myMovieForm = new UntypedFormGroup({
+    movie: new UntypedFormControl(null, [
       Validators.required,
       (ctrl) => {
         return !!this.movieService
@@ -23,20 +23,20 @@ export class MyMovieListComponent implements OnInit {
           : null;
       },
     ]),
-    comment: new FormControl('', [
+    comment: new UntypedFormControl('', [
       Validators.required,
       Validators.minLength(5),
     ]),
   });
 
   // for easier access to the array
-  favorites: FormArray = new FormArray(
+  favorites: UntypedFormArray = new UntypedFormArray(
     this.movieService
       .getFavorites()
       .map((favorite) => this.createMovieForm(favorite))
   );
 
-  favoritesForm = new FormGroup({ favorites: this.favorites });
+  favoritesForm = new UntypedFormGroup({ favorites: this.favorites });
 
   constructor(private movieService: MovieService) {}
 
@@ -77,10 +77,10 @@ export class MyMovieListComponent implements OnInit {
     this.favorites.removeAt(i);
   }
 
-  private createMovieForm(movie: MovieModel & { comment: string }): FormGroup {
-    return new FormGroup({
-      title: new FormControl(movie.title, Validators.required),
-      comment: new FormControl(movie.comment, [
+  private createMovieForm(movie: MovieModel & { comment: string }): UntypedFormGroup {
+    return new UntypedFormGroup({
+      title: new UntypedFormControl(movie.title, Validators.required),
+      comment: new UntypedFormControl(movie.comment, [
         Validators.required,
         Validators.minLength(5),
       ]),
