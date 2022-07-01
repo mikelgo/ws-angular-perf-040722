@@ -13,7 +13,6 @@ import {
 
       <span class="toggle">
         <input
-          *rxLet="isLightTheme$; let checked; strategy: 'immediate'"
           class="toggle-track"
           type="checkbox"
           id="dark-mode"
@@ -37,6 +36,8 @@ export class DarkModeToggleComponent extends RxState<{
 }> {
   isLightTheme$ = this.select('isLightTheme');
 
+  checked = false;
+
   constructor() {
     super();
     this.set({ isLightTheme: true });
@@ -54,6 +55,7 @@ export class DarkModeToggleComponent extends RxState<{
   };
 
   setChecked(isLightTheme: boolean): void {
-    this.set({ isLightTheme });
+    // this.set({ isLightTheme });
+    this.checked = isLightTheme;
   }
 }
