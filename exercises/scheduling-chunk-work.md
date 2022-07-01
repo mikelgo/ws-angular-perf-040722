@@ -120,27 +120,6 @@ of the application. Make sure to measure the outcome!
 </details>
 
 
-
-Replace `ngFor` with `rxFor`:
-
-```html
-<!-- Exercise 6: Replace ngFor with rxFor -->
-<a
-  [attr.data-uf]="'menu-gen-' + genre.id"
-  *rxFor="let genre of genres$; trackBy: trackByGenre"
-  class="navigation--link"
-  [routerLink]="['/list', 'genre', genre.id]"
-  routerLinkActive="active"
->
-  <div class="navigation--menu-item">
-    <svg-icon class="navigation--menu-item-icon" name="genre"></svg-icon>
-    {{ genre.name }}
-  </div>
-</a>
-```
-
-As a result of this replacements we enabled local change detection in app shell and enabled chunked rendering for genres list.
-
 Great job!! You have successfully detected a `long task` and reduced its workload by splicing up the
 work. Btw. you've also improved the bootstrap time of your application. Love it :-)
 
