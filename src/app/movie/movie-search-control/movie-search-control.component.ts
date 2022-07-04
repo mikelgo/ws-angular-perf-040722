@@ -30,6 +30,8 @@ export class MovieSearchControlComponent
     )
   );
 
+  trackMovie = (idx: number, movie: MovieModel) => movie.id;
+
   onChange = (movie: MovieModel) => {};
   onTouched = () => {};
 
